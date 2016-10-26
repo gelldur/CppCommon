@@ -7,7 +7,7 @@
 #include "Point.h"
 #include "Size.h"
 
-namespace ESport
+namespace Dexode
 {
 
 template<class T>

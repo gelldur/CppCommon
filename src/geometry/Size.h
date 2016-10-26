@@ -4,7 +4,7 @@
 
 #pragma once
 
-namespace ESport
+namespace Dexode
 {
 
 template<class T>
@@ -22,13 +22,13 @@ public:
 };
 
 template<class T>
-bool operator<(const ESport::Size<T>& left, const ESport::Size<T>& right)
+bool operator<(const Dexode::Size<T>& left, const Dexode::Size<T>& right)
 {
 	return left.width < right.width || left.height < right.height;
 }
 
 template<class T>
-bool operator==(const ESport::Size<T>& left, const ESport::Size<T>& right)
+bool operator==(const Dexode::Size<T>& left, const Dexode::Size<T>& right)
 {
 	return left.width == right.width && left.height == right.height;
 }

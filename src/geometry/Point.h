@@ -9,7 +9,7 @@
 #include <limits>
 #include <type_traits>
 
-namespace ESport
+namespace Dexode
 {
 
 template<class T>
@@ -144,19 +144,19 @@ std::string Point<T>::toString() const
 }
 
 template<class T>
-bool operator!=(const ESport::Point<T>& left, const ESport::Point<T>& right)
+bool operator!=(const Dexode::Point<T>& left, const Dexode::Point<T>& right)
 {
 	return left.x != right.x || left.y != right.y;
 }
 
 template<class T>
-bool operator<(const ESport::Point<T>& left, const ESport::Point<T>& right)
+bool operator<(const Dexode::Point<T>& left, const Dexode::Point<T>& right)
 {
 	return left.x < right.x || (left.x == right.x && left.y < right.y);
 }
 
 template<class T>
-bool operator==(const ESport::Point<T>& left, const ESport::Point<T>& right)
+bool operator==(const Dexode::Point<T>& left, const Dexode::Point<T>& right)
 {
 	return left.x == right.x && left.y == right.y;
 }
