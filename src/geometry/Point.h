@@ -19,13 +19,13 @@ public:
 	T x;
 	T y;
 
-	Point(T x = 0, T y = 0)
+	constexpr Point(T x = 0, T y = 0)
 			: x(x)
 			, y(y)
 	{
 	}
 
-	Point(Point<T>&& other)
+	constexpr Point(Point<T>&& other)
 			: x(other.x)
 			, y(other.y)
 	{
@@ -45,7 +45,7 @@ public:
 		return *this;
 	}
 
-	Point(const Point<T>& other)
+	constexpr Point(const Point<T>& other)
 			: x(other.x)
 			, y(other.y)
 	{

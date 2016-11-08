@@ -17,13 +17,13 @@ public:
 	Point<T> point;
 	Size<T> size;
 
-	Rect(const Point<T>& point, const Size<T>& size)
+	constexpr Rect(const Point<T>& point, const Size<T>& size)
 			: point(point)
 			, size(size)
 	{
 	}
 
-	Rect(const T x = 0, const T y = 0, const T width = 0, const T height = 0)
+	constexpr Rect(const T x = 0, const T y = 0, const T width = 0, const T height = 0)
 			: point(x, y)
 			, size(width, height)
 	{
