@@ -68,6 +68,16 @@ public:
 	{
 		return point.y + size.height;
 	}
+
+	/**
+	 * @param xAnchor value from 0 to 1. Simple: point.x + (width() * xAnchor)
+	 * @param yAnchor value from 0 to 1. Simple: point.y + (height() * yAnchor)
+	 * @return point scaled by anchor
+	 */
+	const Point<T> getPoint(float xAnchor, float yAnchor) const
+	{
+		return point + Point<float>{width() * xAnchor, height() * yAnchor};
+	}
 };
 
 }
