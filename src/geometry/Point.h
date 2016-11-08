@@ -134,6 +134,11 @@ public:
 		return {x - right.x, y - right.y};
 	}
 
+	Point<T> operator+(const Point<T>& right) const
+	{
+		return {x + right.x, y + right.y};
+	}
+
 	std::string toString() const;
 };
 
