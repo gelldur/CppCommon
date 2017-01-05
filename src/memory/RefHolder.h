@@ -21,7 +21,7 @@ class RefHolder
 {
 	static_assert(std::is_base_of<cocos2d::Ref, T>::value, "T must inherit from cocos2d::Ref");
 public:
-	RefHolder(T* ref)
+	RefHolder(T* ref = nullptr)
 			: _ref(ref)
 	{
 		retain();
