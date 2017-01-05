@@ -117,6 +117,21 @@ public:
 		return _ref != nullptr;
 	}
 
+	bool isNull() const
+	{
+		return _ref == nullptr;
+	}
+
+	bool operator!=(T* other) const
+	{
+		return _ref != other;
+	}
+
+	bool operator==(T* other) const
+	{
+		return _ref == other;
+	}
+
 	T* operator->() const
 	{
 		if (_ref == nullptr)
