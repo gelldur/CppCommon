@@ -42,6 +42,26 @@ public:
 	{
 	}
 
+	RefHolder& operator=(T* other)
+	{
+		if (_ref == other)
+		{
+			return *this;
+		}
+
+		auto previous = _ref;
+
+		_ref = other;
+		retain();
+
+		if (previous != nullptr)
+		{
+			previous->release();
+		}
+
+		return *this;
+	}
+
 	RefHolder& operator=(RefHolder const& other)
 	{
 		if (this == &other)
