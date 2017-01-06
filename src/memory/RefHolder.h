@@ -89,11 +89,6 @@ public:
 			return *this;
 		}
 
-		if (_ref != nullptr && _ref == other._ref)
-		{
-			other.reset();
-			return *this;
-		}
 		auto previous = _ref;
 		_ref = other.reset();
 
