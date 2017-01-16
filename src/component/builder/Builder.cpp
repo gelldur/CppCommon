@@ -12,8 +12,6 @@
 #include <component/touch/click/Clickable.h>
 #include <component/touch/drag/Draggable.h>
 
-#include <component/complex/model/Counter.h>
-
 #include <cocos2d.h>
 
 namespace Dexode
@@ -125,16 +123,6 @@ Builder& Builder::setClickable(const OnClick& onClick)
 
 	auto component = new ComponentType(onClick);
 	_manager->addComponent(std::unique_ptr<ComponentType>(component));
-
-	return *this;
-}
-
-Builder& Builder::setCounter(const int count)
-{
-	using ComponentType = Counter;
-	auto component = addComponent<ComponentType>(_manager);
-
-	component->set(count);
 
 	return *this;
 }

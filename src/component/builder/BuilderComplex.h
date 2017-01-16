@@ -36,12 +36,6 @@ public:
 		return *this;
 	}
 
-	/**
-	 * @param notification notification which will be sended to lua notifier
-	 * @return
-	 */
-	BuilderComplex& addBehaviourButton(const std::string& notification);
-
 	BuilderComplex& addBehaviourDraggable()
 	{
 		_builder.addTouchable().setDraggable();

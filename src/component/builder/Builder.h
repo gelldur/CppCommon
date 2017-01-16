@@ -60,8 +60,6 @@ public:
 
 	Builder& setClickable(const OnClick& onClick);
 
-	Builder& setCounter(const int count = 0);
-
 	ComponentManager* getComponentManager() const;
 
 	ComponentManager* operator->() const
