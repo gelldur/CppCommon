@@ -23,8 +23,9 @@ void LifeCycle::onAttach()
 
 void LifeCycle::onDetach()
 {
-	getWorkingNode()->setOnEnterCallback({});//Remove callbacks
-	getWorkingNode()->setOnExitCallback({});
+	//Using working node when it is destroyed //autorelease
+	//	getWorkingNode()->setOnEnterCallback({});//Remove callbacks
+	//	getWorkingNode()->setOnExitCallback({});
 	inherited::onDetach();
 }
 
