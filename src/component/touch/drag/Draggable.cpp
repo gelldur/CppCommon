@@ -55,12 +55,6 @@ void Draggable::onTouchMoved(cocos2d::Touch* touch)
 
 void Draggable::onTouchEnded(cocos2d::Touch* touch)
 {
-	if ((_flags & Config::Draggable::DO_NOT_RESTORE_POSITION_ON_END)
-		!= Config::Draggable::DO_NOT_RESTORE_POSITION_ON_END)
-	{
-		getWorkingNode()->setPosition(_startPosition);
-	}
-
 	if (_onTouchEnded)
 	{
 		OnDragEvent event;
@@ -68,6 +62,12 @@ void Draggable::onTouchEnded(cocos2d::Touch* touch)
 		event.touch = touch;
 		event.startPosition = _startPosition;
 		_onTouchEnded(event);
+	}
+
+	if ((_flags & Config::Draggable::DO_NOT_RESTORE_POSITION_ON_END)
+		!= Config::Draggable::DO_NOT_RESTORE_POSITION_ON_END)
+	{
+		getWorkingNode()->setPosition(_startPosition);
 	}
 }
 
