@@ -15,7 +15,7 @@
 #include <Notifier.h>
 #include <component/utils/CheckComponentLifeCycle.h>
 
-#include <utils/type_name.h>
+#include <acme/type_name.h>
 
 namespace cocos2d
 {

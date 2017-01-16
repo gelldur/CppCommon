@@ -25,7 +25,7 @@ ComponentManager::~ComponentManager()
 	//We lock Manager
 	_lock = true;
 #endif
-	for (auto&& element : _components)
+	for (auto& element : _components)
 	{
 		element.second->onDetach();
 	}
