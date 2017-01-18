@@ -6,6 +6,7 @@
 
 #include <memory>
 #include <type_traits>
+#include <stdexcept>
 
 #include <base/CCRef.h>
 

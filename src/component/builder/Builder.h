@@ -10,6 +10,7 @@
 #include "Flags.h"
 
 #include <functional>
+#include <stdexcept>
 
 namespace cocos2d
 {
