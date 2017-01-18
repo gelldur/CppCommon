@@ -95,5 +95,20 @@ void Draggable::onDetach()
 	inherited::onDetach();
 }
 
+void Draggable::setListenerTouchBegan(const Draggable::OnTouch& onTouchBegan)
+{
+	_onTouchBegan = onTouchBegan;
+}
+
+void Draggable::setListenerTouchMoved(const Draggable::OnTouch& onTouchMoved)
+{
+	_onTouchMoved = onTouchMoved;
+}
+
+void Draggable::setListenerTouchEnded(const Draggable::OnTouch& onTouchEnded)
+{
+	_onTouchEnded = onTouchEnded;
+}
+
 } /* namespace Component */
 } /* namespace Dexode */

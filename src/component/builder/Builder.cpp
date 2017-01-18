@@ -88,7 +88,7 @@ Builder& Builder::setDraggableOnTouchBegan(const OnTouch& onTouchBegan)
 	setDraggable();
 
 	auto component = _manager->getComponent<ComponentType>();
-	component->setListeners(onTouchBegan, {}, {});
+	component->setListenerTouchBegan(onTouchBegan);
 	return *this;
 }
 
@@ -98,7 +98,7 @@ Builder& Builder::setDraggableOnTouchMoved(const OnTouch& onTouchMoved)
 	setDraggable();
 
 	auto component = _manager->getComponent<ComponentType>();
-	component->setListeners({}, onTouchMoved, {});
+	component->setListenerTouchMoved(onTouchMoved);
 	return *this;
 }
 
@@ -108,7 +108,7 @@ Builder& Builder::setDraggableOnTouchEnded(const OnTouch& onTouchEnded)
 	setDraggable();
 
 	auto component = _manager->getComponent<ComponentType>();
-	component->setListeners({}, {}, onTouchEnded);
+	component->setListenerTouchEnded(onTouchEnded);
 	return *this;
 }
 

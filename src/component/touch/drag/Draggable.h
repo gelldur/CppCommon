@@ -46,6 +46,9 @@ public:
 	void onTouchMoved(cocos2d::Touch* touch);
 	void onTouchEnded(cocos2d::Touch* touch);
 
+	void setListenerTouchBegan(const OnTouch& onTouchBegan);
+	void setListenerTouchMoved(const OnTouch& onTouchMoved);
+	void setListenerTouchEnded(const OnTouch& onTouchEnded);
 	void setListeners(const OnTouch& onTouchBegan, const OnTouch& onTouchMoved, const OnTouch& onTouchEnded);
 
 	void setFlags(int flags);
