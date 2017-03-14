@@ -7,7 +7,6 @@
 #include <cocos2d.h>
 
 #include <exception/Fail.h>
-#include <log.h>
 
 namespace Dexode
 {
@@ -34,7 +33,7 @@ void EventListener::unlisten(const std::string& event)
 	auto found = _listeners.find(event);
 	if (found == _listeners.end())
 	{
-		WLOG("Already unlisten");
+		//WLOG("Already unlisten");
 		return;
 	}
 
