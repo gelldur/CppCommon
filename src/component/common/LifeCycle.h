@@ -15,6 +15,8 @@ class LifeCycle : public Base
 {
 	using inherited = Base;
 public:
+	LifeCycle();
+	virtual ~LifeCycle();
 
 	virtual void onAttach() override;
 	virtual void onDetach() override;
@@ -22,6 +24,9 @@ public:
 protected:
 	void onEnterNode();
 	void onExitNode();
+
+private:
+	cocos2d::Node* _dummyNode = nullptr;
 };
 
 }

@@ -11,10 +11,7 @@
 
 #include <component/Base.h>
 
-namespace cocos2d
-{
-class Node;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

@@ -9,17 +9,12 @@
 
 #include <functional>
 
-#include <math/Vec2.h>
+#include <Vec.h>
 
 #include <component/Base.h>
 #include <EventCollector.h>
 
-namespace cocos2d
-{
-class Touch;
-
-class Node;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

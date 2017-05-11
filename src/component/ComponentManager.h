@@ -9,18 +9,12 @@
 
 #include <memory>
 
-#include <base/CCRef.h>
+#include <Ref.h>
+#include <predeclare.h>
 
 #include <component/Base.h>
 #include <Notifier.h>
 #include <component/utils/CheckComponentLifeCycle.h>
-
-#include <acme/type_name.h>
-
-namespace cocos2d
-{
-class Node;
-}
 
 namespace Dexode
 {

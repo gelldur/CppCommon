@@ -4,10 +4,7 @@
 
 #pragma once
 
-namespace cocos2d
-{
-class Node;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

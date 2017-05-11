@@ -4,7 +4,7 @@
 
 #include "LifeCycle.h"
 
-#include <2d/CCNode.h>
+#include <wrapper.h>
 
 #include <component/ComponentManager.h>
 #include <component/common/LifeCycleEvents.h>
@@ -14,18 +14,62 @@ namespace Dexode
 namespace Component
 {
 
+struct DummyNode : public cocos2d::Node
+{
+	using inherited = cocos2d::Node;
+
+	virtual void onEnter() override
+	{
+		inherited::onEnter();
+		if (onEnterCallback)
+		{
+			onEnterCallback();
+		}
+	}
+
+	virtual void onExit() override
+	{
+		inherited::onExit();
+		if (onExitCallback)
+		{
+			onExitCallback();
+		}
+	}
+
+	std::function<void()> onEnterCallback;
+	std::function<void()> onExitCallback;
+};
+
+LifeCycle::LifeCycle()
+		: _dummyNode(new DummyNode{})
+{
+}
+
+LifeCycle::~LifeCycle()
+{
+	assert(_dummyNode->getParent() == nullptr);
+	CC_SAFE_DELETE(_dummyNode);
+}
+
 void LifeCycle::onAttach()
 {
 	inherited::onAttach();
-	getWorkingNode()->setOnEnterCallback(std::bind(&LifeCycle::onEnterNode, this));
-	getWorkingNode()->setOnExitCallback(std::bind(&LifeCycle::onExitNode, this));
+
+	auto helperNode = static_cast<DummyNode*>(_dummyNode);
+	helperNode->onEnterCallback = std::bind(&LifeCycle::onEnterNode, this);
+	helperNode->onExitCallback = std::bind(&LifeCycle::onExitNode, this);
+
+	getWorkingNode()->addChild(_dummyNode);
 }
 
 void LifeCycle::onDetach()
 {
-	//Using working node when it is destroyed //autorelease
-	//	getWorkingNode()->setOnEnterCallback({});//Remove callbacks
-	//	getWorkingNode()->setOnExitCallback({});
+	auto helperNode = static_cast<DummyNode*>(_dummyNode);
+	helperNode->onEnterCallback = {};
+	helperNode->onExitCallback = {};
+
+	getWorkingNode()->removeChild(_dummyNode, false);
+
 	inherited::onDetach();
 }
 

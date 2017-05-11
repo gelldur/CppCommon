@@ -7,12 +7,8 @@
 
 #pragma once
 
-namespace cocos2d
-{
-class Touch;
-class Node;
-class Vec2;
-}
+#include <predeclare.h>
+#include <Vec.h>
 
 namespace Dexode
 {

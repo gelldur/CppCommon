@@ -12,12 +12,7 @@
 #include <functional>
 #include <stdexcept>
 
-namespace cocos2d
-{
-class Node;
-
-class Touch;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

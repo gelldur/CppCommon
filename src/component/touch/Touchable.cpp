@@ -7,7 +7,7 @@
 
 #include "Touchable.h"
 
-#include <cocos2d.h>
+#include <wrapper.h>
 
 #include <component/ComponentManager.h>
 
@@ -25,10 +25,13 @@ Touchable::Touchable()
 		: _listener(EventListenerTouchOneByOne::create())
 {
 	_listener->setSwallowTouches(true);
-	_listener->onTouchBegan = CC_CALLBACK_2(Touchable::onTouchBegan, this);
-	_listener->onTouchMoved = CC_CALLBACK_2(Touchable::onTouchMoved, this);
-	_listener->onTouchCancelled = CC_CALLBACK_2(Touchable::onTouchEnded, this);
-	_listener->onTouchEnded = CC_CALLBACK_2(Touchable::onTouchEnded, this);
+	_listener->onTouchBegan = std::bind(&Touchable::onTouchBegan, this, std::placeholders::_1, std::placeholders::_2);
+	_listener->onTouchMoved = std::bind(&Touchable::onTouchMoved, this, std::placeholders::_1, std::placeholders::_2);
+	_listener->onTouchCancelled = std::bind(&Touchable::onTouchEnded
+											, this
+											, std::placeholders::_1
+											, std::placeholders::_2);
+	_listener->onTouchEnded = std::bind(&Touchable::onTouchEnded, this, std::placeholders::_1, std::placeholders::_2);
 }
 
 bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
@@ -41,21 +44,7 @@ bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 			continue;
 		}
 
-#ifdef DEBUG
-		auto& children = getWorkingNode()->getChildren();
-		bool found = (touchable.get() == getWorkingNode());
-		for (auto&& child : children)
-		{
-			if (child == touchable.get())
-			{
-				found = true;
-				break;
-			}
-		}
-		assert(found && "Child not found! Maybe you shouldn't track this child");
-#endif
-
-		auto touchBox = touchable->getBoundingBox();
+		auto touchBox = getBoundingBox(touchable.get());
 		touchBox.origin.x -= _widthMargin;
 		touchBox.size.width += _widthMargin;
 
@@ -86,13 +75,12 @@ void Touchable::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Touchable::onEnter()
 {
-	Director::getInstance()->getEventDispatcher()
-			->addEventListenerWithSceneGraphPriority(_listener.get(), getWorkingNode());
+	registerTouchListener(_listener.get());
 }
 
 void Touchable::onExit()
 {
-	Director::getInstance()->getEventDispatcher()->removeEventListener(_listener.get());
+	unregisterTouchListener(_listener.get());
 }
 
 Touchable* Touchable::setMargin(int width, int height)

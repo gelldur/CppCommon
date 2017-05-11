@@ -7,7 +7,7 @@
 
 #include "Clickable.h"
 
-#include <base/CCTouch.h>
+#include <Touch.h>
 
 #include <component/ComponentManager.h>
 #include <component/touch/TouchableEvents.h>

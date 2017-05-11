@@ -12,10 +12,7 @@
 #include <component/Base.h>
 #include <EventCollector.h>
 
-namespace cocos2d
-{
-class Touch;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

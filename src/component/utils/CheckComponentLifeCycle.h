@@ -6,10 +6,7 @@
 
 #include <type_traits>
 
-namespace cocos2d
-{
-class Node;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {

@@ -9,20 +9,13 @@
 
 #include <vector>
 
-#include <base/CCEventListenerTouch.h>
+#include <EventTouchListener.h>
 
 #include <component/Base.h>
 #include <memory/RefHolder.h>
 #include <EventCollector.h>
 
-namespace cocos2d
-{
-class Node;
-
-class Touch;
-
-class Event;
-}
+#include <predeclare.h>
 
 namespace Dexode
 {
