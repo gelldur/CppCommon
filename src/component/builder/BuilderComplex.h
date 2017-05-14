@@ -26,8 +26,7 @@ public:
 
 	static BuilderComplex create(cocos2d::Node* node)
 	{
-		return
-				{node};
+		return {node};
 	}
 
 	BuilderComplex& addBehaviourButton(const Builder::OnClick& onClick)
