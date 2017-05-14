@@ -92,7 +92,6 @@ Touchable* Touchable::setMargin(int width, int height)
 
 void Touchable::addTouchable(cocos2d::Node* node)
 {
-	assert((node == getWorkingNode() || node->getParent() == getWorkingNode()) && "Node should be a child of _node");
 #ifndef DEBUG
 	for (auto& element : _touchables)
 	{

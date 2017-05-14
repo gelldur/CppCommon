@@ -49,8 +49,6 @@ Builder& Builder::addTouchable(cocos2d::Node* node)
 {
 	using ComponentType = Touchable;
 
-	assert((node == nullptr || node->getParent() == _node || node == _node) && "Node should be a child of _node");
-
 	auto component = addComponent<ComponentType>(_manager);
 
 	if (node == nullptr)
