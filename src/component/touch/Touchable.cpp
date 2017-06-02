@@ -75,7 +75,7 @@ void Touchable::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Touchable::onEnter()
 {
-	registerTouchListener(_listener.get());
+	registerTouchListener(_listener.get(), _priority);
 }
 
 void Touchable::onExit()
@@ -112,6 +112,12 @@ void Touchable::onDetach()
 {
 	_collector.unlistenAll();
 	inherited::onDetach();
+}
+
+Touchable* Touchable::setPriority(int priority)
+{
+	_priority = priority;
+	return this;
 }
 
 } /* namespace Component */

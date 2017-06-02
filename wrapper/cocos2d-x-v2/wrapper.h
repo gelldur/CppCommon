@@ -11,9 +11,9 @@ inline const cocos2d::CCRect getBoundingBox(cocos2d::CCNode* node)
 	return node->boundingBox();
 }
 
-inline void registerTouchListener(cocos2d::EventListenerTouchOneByOne* listener)
+inline void registerTouchListener(cocos2d::EventListenerTouchOneByOne* listener, int priority = 0)
 {
-	cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(listener, 0, true);
+	cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(listener, priority, true);
 }
 
 inline void unregisterTouchListener(cocos2d::EventListenerTouchOneByOne* listener)

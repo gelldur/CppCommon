@@ -44,12 +44,14 @@ public:
 	void onExit();
 
 	Touchable* setMargin(int width, int height);
+	Touchable* setPriority(int priority);
 
 	void addTouchable(cocos2d::Node* node);
 
 private:
 	int _widthMargin = 0;
 	int _heightMargin = 0;
+	int _priority = 0;
 	RefHolder<cocos2d::EventListenerTouchOneByOne> _listener;
 	EventCollector _collector;
 
