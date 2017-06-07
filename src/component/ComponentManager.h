@@ -51,7 +51,7 @@ public:
 	template<class T, typename ... Args>
 	int addComponent(Args&& ... params)
 	{
-		return addComponent(std::unique_ptr<Base>(new T(std::forward<Args>(params)...)));
+		return addComponent(std::unique_ptr<T>(new T(std::forward<Args>(params)...)));
 	}
 
 	template<class T>
