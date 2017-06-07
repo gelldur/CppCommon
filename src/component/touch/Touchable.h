@@ -22,8 +22,6 @@ namespace Dexode
 namespace Component
 {
 
-class ComponentManager;
-
 class Touchable : public Base
 {
 	using inherited = Base;
