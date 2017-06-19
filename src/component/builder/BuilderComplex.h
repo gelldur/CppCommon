@@ -20,6 +20,11 @@ class BuilderComplex
 {
 public:
 
+	BuilderComplex(cocos2d::Node* node)
+			: _builder(Builder::create(node))
+	{
+	}
+
 	~BuilderComplex()
 	{
 	}
@@ -43,11 +48,6 @@ public:
 
 private:
 	Builder _builder;
-
-	BuilderComplex(cocos2d::Node* node)
-			: _builder(Builder::create(node))
-	{
-	}
 };
 
 } /* namespace Component */
