@@ -34,6 +34,7 @@ public:
 		return {node};
 	}
 
+	//TODO make optional arguments?
 	BuilderComplex& addBehaviourButton(const Builder::OnClick& onClick)
 	{
 		_builder.addTouchable().setClickable(onClick);
@@ -45,6 +46,10 @@ public:
 		_builder.addTouchable().setDraggable();
 		return *this;
 	}
+
+	ComponentManager* getComponentManager() const;
+
+	ComponentManager* operator->() const;
 
 private:
 	Builder _builder;

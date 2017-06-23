@@ -6,11 +6,22 @@
  */
 #include "BuilderComplex.h"
 
+#include <component/ComponentManager.h>
+
 namespace Dexode
 {
 namespace Component
 {
 
+ComponentManager* BuilderComplex::getComponentManager() const
+{
+	return _builder.getComponentManager();
+}
+
+ComponentManager* BuilderComplex::operator->() const
+{
+	return _builder.operator->();
+}
 
 }
 }
