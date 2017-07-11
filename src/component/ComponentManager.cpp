@@ -34,7 +34,7 @@ ComponentManager::~ComponentManager()
 ComponentManager* ComponentManager::init(cocos2d::Node* node)
 {
 	_workingNode = node;
-	addComponent<LifeCycle>();
+	addComponent<LifeCycle>();//TODO issues occurs when node was added previously
 	return this;
 }
 
