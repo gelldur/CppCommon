@@ -31,6 +31,8 @@ public:
 	virtual void onAttach() override;
 	virtual void onDetach() override;
 
+	bool isTouched(const cocos2d::CCPoint& worldLocation);
+
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

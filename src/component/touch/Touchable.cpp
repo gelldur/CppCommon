@@ -36,28 +36,10 @@ Touchable::Touchable()
 
 bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	for (const auto& touchable : _touchables)
+	if (isTouched(touch->getLocation()))
 	{
-		if (touchable->isVisible() == false || touchable->isRunning() == false)
-		{
-			//We skip such touchables. We can touch only things we can see
-			continue;
-		}
-
-		auto touchBox = getBoundingBox(touchable.get());
-		touchBox.origin.x -= _widthMargin;
-		touchBox.size.width += _widthMargin;
-
-		touchBox.origin.y -= _heightMargin;
-		touchBox.size.height += _heightMargin;
-
-		touchBox.origin = touchable->getParent()->convertToWorldSpace(touchBox.origin);
-
-		if (touchBox.containsPoint(touch->getLocation()))
-		{
-			getOwner()->getBus()->notify(getNotificationTouchBegan(), touch);
-			return true;
-		}
+		getOwner()->getBus()->notify(getNotificationTouchBegan(), touch);
+		return true;
 	}
 
 	return false;
@@ -118,6 +100,33 @@ Touchable* Touchable::setPriority(int priority)
 {
 	_priority = priority;
 	return this;
+}
+
+bool Touchable::isTouched(const cocos2d::CCPoint& worldLocation)
+{
+	for (const auto& touchable : _touchables)
+	{
+		if (touchable->isVisible() == false || touchable->isRunning() == false)
+		{
+			//We skip such touchables. We can touch only things we can see
+			continue;
+		}
+
+		auto touchBox = getBoundingBox(touchable.get());
+		touchBox.origin.x -= _widthMargin;
+		touchBox.size.width += _widthMargin;
+
+		touchBox.origin.y -= _heightMargin;
+		touchBox.size.height += _heightMargin;
+
+		touchBox.origin = touchable->getParent()->convertToWorldSpace(touchBox.origin);
+
+		if (touchBox.containsPoint(worldLocation))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 } /* namespace Component */
