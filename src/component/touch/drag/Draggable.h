@@ -26,7 +26,7 @@ class ComponentManager;
 template<class T>
 class RegisterTouch;
 
-class OnDragEvent;
+struct OnDragEvent;
 
 class Draggable : public Base
 {

@@ -19,7 +19,7 @@ namespace Dexode
 namespace Component
 {
 
-class OnDragEvent;
+struct OnDragEvent;
 
 class ComponentManager;
 
