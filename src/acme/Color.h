@@ -11,87 +11,87 @@ namespace Color
  * @param color format is AARRGGBB
  * @return RR
  */
-inline unsigned char getRed(int color)
+inline unsigned char getRed(int colorARGB)
 {
-	return static_cast<unsigned char>((color & 0xFF0000) >> 16);
+	return static_cast<unsigned char>((colorARGB & 0xFF0000) >> 16);
 }
 
 /**
  * @param color format is AARRGGBB
  * @return GG
  */
-inline unsigned char getGreen(int color)
+inline unsigned char getGreen(int colorARGB)
 {
-	return static_cast<unsigned char>((color & 0x00FF00) >> 8);
+	return static_cast<unsigned char>((colorARGB & 0x00FF00) >> 8);
 }
 
 /**
  * @param color format is AARRGGBB
  * @return BB
  */
-inline unsigned char getBlue(int color)
+inline unsigned char getBlue(int colorARGB)
 {
-	return static_cast<unsigned char>(color & 0x0000FF);
+	return static_cast<unsigned char>(colorARGB & 0x0000FF);
 }
 
 /**
  * @param color format is AARRGGBB
  * @return AA
  */
-inline unsigned char getAlpha(int color)
+inline unsigned char getAlpha(int colorARGB)
 {
-	return static_cast<unsigned char>((color & 0xFF000000) >> 24);
+	return static_cast<unsigned char>((colorARGB & 0xFF000000) >> 24);
 }
 
-inline int setAlpha(const int color, unsigned char alpha)
+inline int setAlpha(const int colorARGB, unsigned char alpha)
 {
-	return (color & 0x00FFFFFF) | (alpha << 24);
+	return (colorARGB & 0x00FFFFFF) | (alpha << 24);
 }
 
-cocos2d::ccColor3B convertTo3B(const int color);
-cocos2d::ccColor4F convertTo4F(const int color);
-cocos2d::ccColor4B convertTo4B(const int color);
+cocos2d::ccColor3B convertTo3B(const int colorARGB);
+cocos2d::ccColor4F convertTo4F(const int colorARGB);
+cocos2d::ccColor4B convertTo4B(const int colorARGB);
 
 class convert
 {
 public:
-	convert(int color)
-			: _color(color)
+	convert(int colorARGB)
+			: _colorARGB(colorARGB)
 	{
 	}
 
 	template<typename T>
 	inline operator T()
 	{
-		return T{_color};
+		return T{_colorARGB};
 	}
 
 	convert& opacity(const float value)
 	{
-		_color = setAlpha(_color, static_cast<unsigned char>(255 * value));
+		_colorARGB = setAlpha(_colorARGB, static_cast<unsigned char>(255 * value));
 		return *this;
 	}
 
 private:
-	int _color;
+	int _colorARGB;
 };
 
 template<>
 inline convert::operator cocos2d::ccColor3B()
 {
-	return convertTo3B(_color);
+	return convertTo3B(_colorARGB);
 }
 
 template<>
 inline convert::operator cocos2d::ccColor4F()
 {
-	return convertTo4F(_color);
+	return convertTo4F(_colorARGB);
 }
 
 template<>
 inline convert::operator cocos2d::ccColor4B()
 {
-	return convertTo4B(_color);
+	return convertTo4B(_colorARGB);
 }
 
 }
