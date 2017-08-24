@@ -4,7 +4,7 @@
 #include "RedDot.h"
 //////////////////////////////////
 
-#include <acme/Color.h>
+#include <acme/ccColorExtension.h>
 
 namespace Debug
 {
