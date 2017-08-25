@@ -13,7 +13,7 @@
 
 #include <component/Base.h>
 #include <memory/RefHolder.h>
-#include <EventCollector.h>
+#include <eventbus/EventCollector.h>
 
 #include <predeclare.h>
 

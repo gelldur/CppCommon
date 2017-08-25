@@ -19,6 +19,7 @@ namespace Component
 
 Clickable::Clickable(const OnClick& onClick)
 		: _onClick(onClick)
+		, _collector{nullptr}
 {
 }
 

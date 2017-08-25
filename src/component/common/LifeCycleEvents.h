@@ -7,17 +7,24 @@
 #include <type_traits>
 #include <functional>
 
-#include <Notification.h>
-#include <EventCollector.h>
+#include <eventbus/Event.h>
+#include <eventbus/EventCollector.h>
 #include <component/ComponentManager.h>
 
 namespace Dexode
 {
 namespace Component
 {
-MAKE_NOTIFICATION(OnEnter);
 
-MAKE_NOTIFICATION(OnExit);
+inline const Dexode::Event<> getNotificationOnEnter()
+{
+	return Dexode::Event<>{"OnEnter"};
+};
+
+inline const Dexode::Event<> getNotificationOnExit()
+{
+	return Dexode::Event<>{"OnExit"};
+};
 
 template<typename T>
 struct has_onEnter

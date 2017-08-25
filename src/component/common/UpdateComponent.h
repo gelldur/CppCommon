@@ -9,7 +9,7 @@
 #include <map>
 
 #include <component/Base.h>
-#include <EventCollector.h>
+#include <eventbus/EventCollector.h>
 
 namespace Dexode
 {

@@ -23,6 +23,7 @@ namespace Component
 
 Touchable::Touchable()
 		: _listener(EventListenerTouchOneByOne::create())
+		, _collector{nullptr}
 {
 	_listener->setSwallowTouches(true);
 	_listener->onTouchBegan = std::bind(&Touchable::onTouchBegan, this, std::placeholders::_1, std::placeholders::_2);

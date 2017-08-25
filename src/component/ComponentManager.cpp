@@ -15,7 +15,7 @@ namespace Component
 {
 
 ComponentManager::ComponentManager()
-		: _bus{std::make_shared<Notifier>()}
+		: _bus{std::make_shared<Dexode::EventBus>()}
 {
 }
 

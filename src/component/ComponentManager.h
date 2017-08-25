@@ -13,7 +13,7 @@
 #include <predeclare.h>
 
 #include <component/Base.h>
-#include <Notifier.h>
+#include <eventbus/EventBus.h>
 #include <component/utils/CheckComponentLifeCycle.h>
 
 namespace Dexode
@@ -93,7 +93,7 @@ public:
 		component->setOwner(nullptr);
 	}
 
-	const std::shared_ptr<Notifier>& getBus()
+	const std::shared_ptr<Dexode::EventBus>& getBus()
 	{
 		return _bus;
 	}
@@ -131,7 +131,7 @@ private:
 	bool _lock = false;
 #endif
 	cocos2d::Node* _workingNode = nullptr;
-	std::shared_ptr<Notifier> _bus;
+	std::shared_ptr<Dexode::EventBus> _bus;
 	std::map<int, std::unique_ptr<Base>> _components;
 
 	ComponentManager();

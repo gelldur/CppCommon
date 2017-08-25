@@ -10,8 +10,8 @@
 #include <type_traits>
 #include <functional>
 
-#include <Notification.h>
-#include <EventCollector.h>
+#include <eventbus/Event.h>
+#include <eventbus/EventCollector.h>
 #include <component/ComponentManager.h>
 
 #include <predeclare.h>
@@ -21,11 +21,20 @@ namespace Dexode
 namespace Component
 {
 
-MAKE_NOTIFICATION(TouchBegan, cocos2d::Touch*);
+inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchBegan()
+{
+	return Dexode::Event<cocos2d::Touch*>{"TouchBegan"};
+};
 
-MAKE_NOTIFICATION(TouchMoved, cocos2d::Touch*);
+inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchMoved()
+{
+	return Dexode::Event<cocos2d::Touch*>{"TouchMoved"};
+};
 
-MAKE_NOTIFICATION(TouchEnded, cocos2d::Touch*);
+inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchEnded()
+{
+	return Dexode::Event<cocos2d::Touch*>{"TouchEnded"};
+};
 
 template<typename T>
 struct has_onTouchBegan

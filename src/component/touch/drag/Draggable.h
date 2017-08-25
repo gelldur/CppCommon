@@ -12,7 +12,7 @@
 #include <Vec.h>
 
 #include <component/Base.h>
-#include <EventCollector.h>
+#include <eventbus/EventCollector.h>
 
 #include <predeclare.h>
 
@@ -57,7 +57,7 @@ private:
 	OnTouch _onTouchBegan;
 	OnTouch _onTouchMoved;
 	OnTouch _onTouchEnded;
-	EventCollector _collector;
+	EventCollector _collector = nullptr;
 };
 
 } /* namespace Component */
