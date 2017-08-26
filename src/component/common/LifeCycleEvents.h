@@ -7,7 +7,6 @@
 #include <type_traits>
 #include <functional>
 
-#include <eventbus/Event.h>
 #include <eventbus/EventCollector.h>
 #include <component/ComponentManager.h>
 
@@ -16,15 +15,8 @@ namespace Dexode
 namespace Component
 {
 
-inline const Dexode::Event<> getNotificationOnEnter()
-{
-	return Dexode::Event<>{"OnEnter"};
-};
-
-inline const Dexode::Event<> getNotificationOnExit()
-{
-	return Dexode::Event<>{"OnExit"};
-};
+struct OnEnter {};
+struct OnExit {};
 
 template<typename T>
 struct has_onEnter
@@ -41,16 +33,16 @@ public:
 };
 
 template<typename T>
-typename std::enable_if<has_onEnter<T>::value, std::function<void()>>::type get_onEnter(T* value)
+typename std::enable_if<has_onEnter<T>::value, std::function<void(const OnEnter&)>>::type get_onEnter(T* value)
 {
-	return [value]()
+	return [value](const OnEnter&)
 	{
 		value->onEnter();
 	};
 }
 
 template<typename T>
-typename std::enable_if<has_onEnter<T>::value == false, std::function<void()>>::type get_onEnter(T* value)
+typename std::enable_if<has_onEnter<T>::value == false, std::function<void(const OnEnter&)>>::type get_onEnter(T* value)
 {
 	return {};
 }
@@ -74,16 +66,16 @@ public:
 };
 
 template<typename T>
-typename std::enable_if<has_onExit<T>::value, std::function<void()>>::type get_onExit(T* value)
+typename std::enable_if<has_onExit<T>::value, std::function<void(const OnExit&)>>::type get_onExit(T* value)
 {
-	return [value]()
+	return [value](const OnExit&)
 	{
 		value->onExit();
 	};
 }
 
 template<typename T>
-typename std::enable_if<has_onExit<T>::value == false, std::function<void()>>::type get_onExit(T* value)
+typename std::enable_if<has_onExit<T>::value == false, std::function<void(const OnExit&)>>::type get_onExit(T* value)
 {
 	return {};
 }
@@ -98,8 +90,8 @@ EventCollector listenForOnEnterOnExit(T* component)
 {
 	static_assert(std::is_base_of<Base, T>::value, "T must inherit from Base component");
 	EventCollector collector{component->getOwner()->getBus()};
-	collector.listen(getNotificationOnEnter(), get_onEnter(component));
-	collector.listen(getNotificationOnExit(), get_onExit(component));
+	collector.listen<OnEnter>(get_onEnter(component));
+	collector.listen<OnExit>(get_onExit(component));
 
 	return collector;
 }

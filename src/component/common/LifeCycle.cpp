@@ -75,12 +75,12 @@ void LifeCycle::onDetach()
 
 void LifeCycle::onEnterNode()
 {
-	getOwner()->getBus()->notify(getNotificationOnEnter());
+	getOwner()->getBus()->notify(OnEnter{});
 }
 
 void LifeCycle::onExitNode()
 {
-	getOwner()->getBus()->notify(getNotificationOnExit());
+	getOwner()->getBus()->notify(OnExit{});
 }
 
 }

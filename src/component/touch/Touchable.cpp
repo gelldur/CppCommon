@@ -39,7 +39,7 @@ bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	if (isTouched(touch->getLocation()))
 	{
-		getOwner()->getBus()->notify(getNotificationTouchBegan(), touch);
+		getOwner()->getBus()->notify(TouchBegan{touch});
 		return true;
 	}
 
@@ -48,12 +48,12 @@ bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Touchable::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	getOwner()->getBus()->notify(getNotificationTouchMoved(), touch);
+	getOwner()->getBus()->notify(TouchMoved{touch});
 }
 
 void Touchable::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	getOwner()->getBus()->notify(getNotificationTouchEnded(), touch);
+	getOwner()->getBus()->notify(TouchEnded{touch});
 }
 
 void Touchable::onEnter()

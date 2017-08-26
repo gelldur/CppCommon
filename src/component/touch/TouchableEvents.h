@@ -10,7 +10,6 @@
 #include <type_traits>
 #include <functional>
 
-#include <eventbus/Event.h>
 #include <eventbus/EventCollector.h>
 #include <component/ComponentManager.h>
 
@@ -21,20 +20,9 @@ namespace Dexode
 namespace Component
 {
 
-inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchBegan()
-{
-	return Dexode::Event<cocos2d::Touch*>{"TouchBegan"};
-};
-
-inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchMoved()
-{
-	return Dexode::Event<cocos2d::Touch*>{"TouchMoved"};
-};
-
-inline const Dexode::Event<cocos2d::Touch*> getNotificationTouchEnded()
-{
-	return Dexode::Event<cocos2d::Touch*>{"TouchEnded"};
-};
+struct TouchBegan { cocos2d::Touch* touch; };
+struct TouchMoved { cocos2d::Touch* touch; };
+struct TouchEnded { cocos2d::Touch* touch; };
 
 template<typename T>
 struct has_onTouchBegan
@@ -51,17 +39,18 @@ public:
 };
 
 template<typename T>
-typename std::enable_if<has_onTouchBegan<T>::value, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<has_onTouchBegan<T>::value, std::function<void(const Dexode::Component::TouchBegan&)>>::type
 get_onTouchBegan(T* value)
 {
-	return [=](cocos2d::Touch* touch)
+	return [=](const Dexode::Component::TouchBegan& event)
 	{
-		value->onTouchBegan(touch);
+		value->onTouchBegan(event.touch);
 	};
 }
 
 template<typename T>
-typename std::enable_if<has_onTouchBegan<T>::value == false, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<
+		has_onTouchBegan<T>::value == false, std::function<void(const Dexode::Component::TouchBegan&)>>::type
 get_onTouchBegan(T* value)
 {
 	return {};
@@ -85,12 +74,12 @@ public:
 };
 
 template<typename T>
-typename std::enable_if<has_onTouchEnded<T>::value, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<has_onTouchEnded<T>::value, std::function<void(const Dexode::Component::TouchEnded&)>>::type
 get_onTouchEnded(T* value)
 {
-	return [=](cocos2d::Touch* touch)
+	return [=](const Dexode::Component::TouchEnded& event)
 	{
-		value->onTouchEnded(touch);
+		value->onTouchEnded(event.touch);
 	};
 }
 
@@ -120,17 +109,18 @@ public:
 };
 
 template<typename T>
-typename std::enable_if<has_onTouchMoved<T>::value, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<has_onTouchMoved<T>::value, std::function<void(const Dexode::Component::TouchMoved&)>>::type
 get_onTouchMoved(T* value)
 {
-	return [=](cocos2d::Touch* touch)
+	return [=](const Dexode::Component::TouchMoved& event)
 	{
-		value->onTouchMoved(touch);
+		value->onTouchMoved(event.touch);
 	};
 }
 
 template<typename T>
-typename std::enable_if<has_onTouchMoved<T>::value == false, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<
+		has_onTouchMoved<T>::value == false, std::function<void(const Dexode::Component::TouchMoved&)>>::type
 get_onTouchMoved(T* value)
 {
 	return {};
@@ -144,9 +134,9 @@ EventCollector listenForTouches(T* component)
 {
 	static_assert(std::is_base_of<Base, T>::value, "T must inherit from Base component");
 	EventCollector collector{component->getOwner()->getBus()};
-	collector.listen(getNotificationTouchBegan(), get_onTouchBegan(component));
-	collector.listen(getNotificationTouchMoved(), get_onTouchMoved(component));
-	collector.listen(getNotificationTouchEnded(), get_onTouchEnded(component));
+	collector.listen<TouchBegan>(get_onTouchBegan(component));
+	collector.listen<TouchMoved>(get_onTouchMoved(component));
+	collector.listen<TouchEnded>(get_onTouchEnded(component));
 
 	return collector;
 }
