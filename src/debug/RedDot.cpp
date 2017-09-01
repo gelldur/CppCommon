@@ -16,7 +16,7 @@ bool RedDot::init(float radius, int color)
 		return false;
 	}
 
-	drawDot(cocos2d::CCPoint{0, 0}, radius, Color::convertTo4F(color));
+	drawDot(cocos2d::CCPoint{0, 0}, radius, Acme::Color::convertTo4F(color));
 	setZOrder(INT_MAX);
 	return true;
 }
