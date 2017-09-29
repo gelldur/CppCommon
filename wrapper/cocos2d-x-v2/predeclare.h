@@ -10,8 +10,4 @@ class CCNode;
 class CCTouch;
 class CCEvent;
 
-using Node = CCNode;
-using Touch = CCTouch;
-using Event = CCEvent;
-
 }

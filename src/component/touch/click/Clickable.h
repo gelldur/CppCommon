@@ -23,14 +23,14 @@ class Clickable : public Base
 {
 	using inherited = Base;
 public:
-	using OnClick = std::function<void(cocos2d::Touch*)>;
+	using OnClick = std::function<void(cocos2d::CCTouch*)>;
 
 	Clickable(const OnClick& onClick);
 
 	virtual void onAttach() override;
 	virtual void onDetach() override;
 
-	void onTouchEnded(cocos2d::Touch* touch);
+	void onTouchEnded(cocos2d::CCTouch* touch);
 
 private:
 	const OnClick _onClick;

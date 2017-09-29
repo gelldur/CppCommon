@@ -14,9 +14,9 @@ namespace Dexode
 namespace Component
 {
 
-struct DummyNode : public cocos2d::Node
+struct DummyNode : public cocos2d::CCNode
 {
-	using inherited = cocos2d::Node;
+	using inherited = cocos2d::CCNode;
 
 	virtual void onEnter() override
 	{

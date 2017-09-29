@@ -26,7 +26,7 @@ protected:
 	void onExitNode();
 
 private:
-	cocos2d::Node* _dummyNode = nullptr;
+	cocos2d::CCNode* _dummyNode = nullptr;
 };
 
 }

@@ -17,8 +17,8 @@ namespace Component
 
 struct OnDragEvent
 {
-	cocos2d::Touch* touch;
-	cocos2d::Node* node;
+	cocos2d::CCTouch* touch;
+	cocos2d::CCNode* node;
 	cocos2d::Vec2 startPosition;
 };
 

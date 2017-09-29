@@ -26,15 +26,15 @@ class ComponentManager;
 class Builder
 {
 public:
-	using OnClick = std::function<void(cocos2d::Touch*)>;
+	using OnClick = std::function<void(cocos2d::CCTouch*)>;
 	using OnTouch = std::function<void(OnDragEvent)>;
 
-	static Builder create(cocos2d::Node* node)
+	static Builder create(cocos2d::CCNode* node)
 	{
 		return {node};
 	}
 
-	Builder(cocos2d::Node* node);
+	Builder(cocos2d::CCNode* node);
 
 	/**
 	 * @param node node which should be a child of node used for create.
@@ -42,7 +42,7 @@ public:
 	 *   Default value means that we want ourselves to touchable list
 	 * @return
 	 */
-	Builder& addTouchable(cocos2d::Node* node = nullptr);
+	Builder& addTouchable(cocos2d::CCNode* node = nullptr);
 
 	Builder& setDraggable(int flags = Config::Draggable::EMPTY);
 
@@ -70,7 +70,7 @@ public:
 	}
 
 private:
-	cocos2d::Node* _node = nullptr;
+	cocos2d::CCNode* _node = nullptr;
 	ComponentManager* _manager = nullptr;
 };
 

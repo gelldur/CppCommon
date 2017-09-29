@@ -27,7 +27,7 @@ inline int getIdForType();
 class ComponentManager : public cocos2d::Ref
 {
 public:
-	static ComponentManager* create(cocos2d::Node* node)
+	static ComponentManager* create(cocos2d::CCNode* node)
 	{
 		auto* ret = new(std::nothrow) ComponentManager();
 		if (ret && ret->init(node))
@@ -42,11 +42,11 @@ public:
 		}
 	}
 
-	static ComponentManager* husk(cocos2d::Node* node);
+	static ComponentManager* husk(cocos2d::CCNode* node);
 
 	virtual ~ComponentManager();
 
-	ComponentManager* init(cocos2d::Node* node);
+	ComponentManager* init(cocos2d::CCNode* node);
 
 	template<class T, typename ... Args>
 	int addComponent(Args&& ... params)
@@ -120,7 +120,7 @@ public:
 		return dynamic_cast<T*>(element->second.get());
 	}
 
-	cocos2d::Node* getWorkingNode()
+	cocos2d::CCNode* getWorkingNode()
 	{
 		assert(_workingNode);
 		return _workingNode;
@@ -130,7 +130,7 @@ private:
 #ifdef DEBUG
 	bool _lock = false;
 #endif
-	cocos2d::Node* _workingNode = nullptr;
+	cocos2d::CCNode* _workingNode = nullptr;
 	std::shared_ptr<Dexode::EventBus> _bus;
 	std::map<int, std::unique_ptr<Base>> _components;
 

@@ -21,7 +21,7 @@ namespace Dexode
 namespace Component
 {
 
-Builder::Builder(cocos2d::Node* node)
+Builder::Builder(cocos2d::CCNode* node)
 		: _node(node)
 		, _manager(ComponentManager::create(node))
 {
@@ -45,7 +45,7 @@ ComponentManager* Builder::getComponentManager() const
 	return _manager;
 }
 
-Builder& Builder::addTouchable(cocos2d::Node* node)
+Builder& Builder::addTouchable(cocos2d::CCNode* node)
 {
 	using ComponentType = Touchable;
 

@@ -16,7 +16,7 @@ void Base::onAttach()
 	assert(_owner);//_owner should be set before onAttach() !
 }
 
-cocos2d::Node* Base::getWorkingNode()
+cocos2d::CCNode* Base::getWorkingNode()
 {
 	return getOwner()->getWorkingNode();
 }

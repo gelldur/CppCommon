@@ -9,7 +9,7 @@
 namespace Dexode
 {
 
-void ShowMy::boundsOnScreen(cocos2d::Node* node)
+void ShowMy::boundsOnScreen(cocos2d::CCNode* node)
 {
 	auto drawNode = cocos2d::DrawNode::create(1);
 	node->addChild(drawNode, INT_MAX);

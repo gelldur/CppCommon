@@ -25,15 +25,15 @@ class EventListener
 public:
 	~EventListener();
 
-	void addEventListenerWithSceneGraphPriority(cocos2d::EventListener* listener, cocos2d::Node* node);
+	void addEventListenerWithSceneGraphPriority(cocos2d::CCEventListener* listener, cocos2d::CCNode* node);
 
-	void listen(const std::string& event, const std::function<void(cocos2d::EventCustom*)>& listener);
+	void listen(const std::string& event, const std::function<void(cocos2d::CCEventCustom*)>& listener);
 	void unlisten(const std::string& event);
 	void unlistenAll();
 
 private:
-	std::map<std::string, cocos2d::EventListener*> _listeners;
-	std::map<void*, cocos2d::EventListener*> _listenersForTarget;
+	std::map<std::string, cocos2d::CCEventListener*> _listeners;
+	std::map<void*, cocos2d::CCEventListener*> _listenersForTarget;
 };
 
 }

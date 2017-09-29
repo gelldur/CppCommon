@@ -23,7 +23,7 @@ Clickable::Clickable(const OnClick& onClick)
 {
 }
 
-void Clickable::onTouchEnded(cocos2d::Touch* touch)
+void Clickable::onTouchEnded(cocos2d::CCTouch* touch)
 {
 	_onClick(touch);
 }

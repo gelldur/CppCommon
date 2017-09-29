@@ -19,7 +19,7 @@ namespace Dexode
 namespace Component
 {
 
-void Draggable::onTouchBegan(cocos2d::Touch* touch)
+void Draggable::onTouchBegan(cocos2d::CCTouch* touch)
 {
 	_startPosition = getWorkingNode()->getPosition();
 	if (_onTouchBegan)
@@ -32,7 +32,7 @@ void Draggable::onTouchBegan(cocos2d::Touch* touch)
 	}
 }
 
-void Draggable::onTouchMoved(cocos2d::Touch* touch)
+void Draggable::onTouchMoved(cocos2d::CCTouch* touch)
 {
 	if ((_flags & Config::Draggable::MOVING_ONLY_X) != 0)
 	{
@@ -53,7 +53,7 @@ void Draggable::onTouchMoved(cocos2d::Touch* touch)
 	}
 }
 
-void Draggable::onTouchEnded(cocos2d::Touch* touch)
+void Draggable::onTouchEnded(cocos2d::CCTouch* touch)
 {
 	if (_onTouchEnded)
 	{

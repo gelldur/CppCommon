@@ -35,7 +35,7 @@ Touchable::Touchable()
 	_listener->onTouchEnded = std::bind(&Touchable::onTouchEnded, this, std::placeholders::_1, std::placeholders::_2);
 }
 
-bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+bool Touchable::onTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 {
 	if (isTouched(touch->getLocation()))
 	{
@@ -46,12 +46,12 @@ bool Touchable::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 	return false;
 }
 
-void Touchable::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+void Touchable::onTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 {
 	getOwner()->getBus()->notify(TouchMoved{touch});
 }
 
-void Touchable::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
+void Touchable::onTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 {
 	getOwner()->getBus()->notify(TouchEnded{touch});
 }
@@ -73,7 +73,7 @@ Touchable* Touchable::setMargin(int width, int height)
 	return this;
 }
 
-void Touchable::addTouchable(cocos2d::Node* node)
+void Touchable::addTouchable(cocos2d::CCNode* node)
 {
 #ifndef DEBUG
 	for (auto& element : _touchables)

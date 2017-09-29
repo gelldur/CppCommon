@@ -20,7 +20,7 @@ class BuilderComplex
 {
 public:
 
-	BuilderComplex(cocos2d::Node* node)
+	BuilderComplex(cocos2d::CCNode* node)
 			: _builder(Builder::create(node))
 	{
 	}
@@ -29,7 +29,7 @@ public:
 	{
 	}
 
-	static BuilderComplex create(cocos2d::Node* node)
+	static BuilderComplex create(cocos2d::CCNode* node)
 	{
 		return {node};
 	}

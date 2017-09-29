@@ -49,7 +49,7 @@ public:
 
 template<class T>
 typename std::enable_if<check_onAttach<T>::value>::type
-onAttach(T* component, cocos2d::Node* workingNode, Dexode::Tama::Component::ComponentManager* componentManager)
+onAttach(T* component, cocos2d::CCNode* workingNode, Dexode::Tama::Component::ComponentManager* componentManager)
 {
 	component->onAttach(workingNode, componentManager);
 }
@@ -57,14 +57,14 @@ onAttach(T* component, cocos2d::Node* workingNode, Dexode::Tama::Component::Comp
 template<class T>
 typename std::enable_if<!check_onAttach<T>::value>::type
 onAttach(T* component
-		, cocos2d::Node* workingNode
+		, cocos2d::CCNode* workingNode
 		, Dexode::Tama::Component::ComponentManager* componentManager)//Do nothing
 {
 }
 
 template<class T>
 typename std::enable_if<check_onDetach<T>::value>::type
-onDetach(T* component, cocos2d::Node* workingNode, Dexode::Tama::Component::ComponentManager* componentManager)
+onDetach(T* component, cocos2d::CCNode* workingNode, Dexode::Tama::Component::ComponentManager* componentManager)
 {
 	component->onDetach(workingNode, componentManager);
 }
@@ -72,7 +72,7 @@ onDetach(T* component, cocos2d::Node* workingNode, Dexode::Tama::Component::Comp
 template<class T>
 typename std::enable_if<!check_onDetach<T>::value>::type
 onDetach(T* component
-		, cocos2d::Node* workingNode
+		, cocos2d::CCNode* workingNode
 		, Dexode::Tama::Component::ComponentManager* componentManager)//Do nothing
 {
 }

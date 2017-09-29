@@ -32,7 +32,7 @@ public:
 		return _owner;
 	}
 
-	cocos2d::Node* getWorkingNode();
+	cocos2d::CCNode* getWorkingNode();
 
 protected:
 	void setOwner(Dexode::Component::ComponentManager* owner)

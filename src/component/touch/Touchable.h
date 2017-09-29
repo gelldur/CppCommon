@@ -33,11 +33,11 @@ public:
 
 	bool isTouched(const cocos2d::CCPoint& worldLocation);
 
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	bool onTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
 
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
 
-	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
 
 	void onEnter();
 
@@ -46,7 +46,7 @@ public:
 	Touchable* setMargin(int width, int height);
 	Touchable* setPriority(int priority);
 
-	void addTouchable(cocos2d::Node* node);
+	void addTouchable(cocos2d::CCNode* node);
 
 private:
 	int _widthMargin = 0;
@@ -55,7 +55,7 @@ private:
 	RefHolder<cocos2d::EventListenerTouchOneByOne> _listener;
 	EventCollector _collector;
 
-	std::vector<RefHolder<cocos2d::Node>> _touchables;
+	std::vector<RefHolder<cocos2d::CCNode>> _touchables;
 };
 
 } /* namespace Component */

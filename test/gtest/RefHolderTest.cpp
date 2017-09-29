@@ -408,7 +408,7 @@ TEST(RefHolderTest, assignMove2Nullptr)
 	testRefB->release();//delete
 }
 
-class DeletingClass : public cocos2d::Node
+class DeletingClass : public cocos2d::CCNode
 {
 public:
 	DeletingClass(bool& deleteTracker)

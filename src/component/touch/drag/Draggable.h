@@ -37,9 +37,9 @@ public:
 	virtual void onAttach() override;
 	virtual void onDetach() override;
 
-	void onTouchBegan(cocos2d::Touch* touch);
-	void onTouchMoved(cocos2d::Touch* touch);
-	void onTouchEnded(cocos2d::Touch* touch);
+	void onTouchBegan(cocos2d::CCTouch* touch);
+	void onTouchMoved(cocos2d::CCTouch* touch);
+	void onTouchEnded(cocos2d::CCTouch* touch);
 
 	void setListenerTouchBegan(const OnTouch& onTouchBegan);
 	void setListenerTouchMoved(const OnTouch& onTouchMoved);

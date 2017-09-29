@@ -16,7 +16,7 @@ EventListener::~EventListener()
 	unlistenAll();
 }
 
-void EventListener::listen(const std::string& event, const std::function<void(cocos2d::EventCustom*)>& listener)
+void EventListener::listen(const std::string& event, const std::function<void(cocos2d::CCEventCustom*)>& listener)
 {
 	if (_listeners.find(event) != _listeners.end())
 	{
@@ -55,7 +55,7 @@ void EventListener::unlistenAll()
 	_listenersForTarget.clear();
 }
 
-void EventListener::addEventListenerWithSceneGraphPriority(cocos2d::EventListener* listener, cocos2d::Node* node)
+void EventListener::addEventListenerWithSceneGraphPriority(cocos2d::CCEventListener* listener, cocos2d::CCNode* node)
 {
 	if (_listenersForTarget.find(node) != _listenersForTarget.end())
 	{

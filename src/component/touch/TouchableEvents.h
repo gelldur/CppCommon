@@ -20,16 +20,16 @@ namespace Dexode
 namespace Component
 {
 
-struct TouchBegan { cocos2d::Touch* touch; };
-struct TouchMoved { cocos2d::Touch* touch; };
-struct TouchEnded { cocos2d::Touch* touch; };
+struct TouchBegan { cocos2d::CCTouch* touch; };
+struct TouchMoved { cocos2d::CCTouch* touch; };
+struct TouchEnded { cocos2d::CCTouch* touch; };
 
 template<typename T>
 struct has_onTouchBegan
 {
 private:
 	template<typename U>
-	static auto test(int, cocos2d::Touch* touch) -> decltype(std::declval<U>().onTouchBegan(touch), std::true_type{});
+	static auto test(int, cocos2d::CCTouch* touch) -> decltype(std::declval<U>().onTouchBegan(touch), std::true_type{});
 
 	template<typename>
 	static std::false_type test(...);
@@ -64,7 +64,7 @@ struct has_onTouchEnded
 {
 private:
 	template<typename U>
-	static auto test(int, cocos2d::Touch* touch) -> decltype(std::declval<U>().onTouchEnded(touch), std::true_type{});
+	static auto test(int, cocos2d::CCTouch* touch) -> decltype(std::declval<U>().onTouchEnded(touch), std::true_type{});
 
 	template<typename>
 	static std::false_type test(...);
@@ -84,7 +84,7 @@ get_onTouchEnded(T* value)
 }
 
 template<typename T>
-typename std::enable_if<has_onTouchEnded<T>::value == false, std::function<void(cocos2d::Touch* touch)>>::type
+typename std::enable_if<has_onTouchEnded<T>::value == false, std::function<void(cocos2d::CCTouch* touch)>>::type
 get_onTouchEnded(T* value)
 {
 	return {};
@@ -99,7 +99,7 @@ struct has_onTouchMoved
 {
 private:
 	template<typename U>
-	static auto test(int, cocos2d::Touch* touch) -> decltype(std::declval<U>().onTouchMoved(touch), std::true_type{});
+	static auto test(int, cocos2d::CCTouch* touch) -> decltype(std::declval<U>().onTouchMoved(touch), std::true_type{});
 
 	template<typename>
 	static std::false_type test(...);

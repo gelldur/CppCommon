@@ -31,14 +31,14 @@ ComponentManager::~ComponentManager()
 	}
 }
 
-ComponentManager* ComponentManager::init(cocos2d::Node* node)
+ComponentManager* ComponentManager::init(cocos2d::CCNode* node)
 {
 	_workingNode = node;
 	addComponent<LifeCycle>();//TODO issues occurs when node was added previously
 	return this;
 }
 
-ComponentManager* ComponentManager::husk(cocos2d::Node* node)
+ComponentManager* ComponentManager::husk(cocos2d::CCNode* node)
 {
 	auto manager = dynamic_cast<ComponentManager*>(node->getUserObject());
 	assert(manager != nullptr && "This node doesn't have component manager or it was removed!");

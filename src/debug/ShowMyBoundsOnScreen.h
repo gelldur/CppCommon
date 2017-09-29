@@ -14,7 +14,7 @@ namespace Dexode
 
 namespace ShowMy
 {
-void boundsOnScreen(cocos2d::Node* node);
+void boundsOnScreen(cocos2d::CCNode* node);
 };
 
 }
