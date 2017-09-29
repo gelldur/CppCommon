@@ -120,7 +120,14 @@ bool Touchable::isTouched(const cocos2d::CCPoint& worldLocation)
 		touchBox.origin.y -= _heightMargin;
 		touchBox.size.height += _heightMargin;
 
-		touchBox.origin = touchable->getParent()->convertToWorldSpace(touchBox.origin);
+		if (touchable->getParent() == nullptr)//maybe it is a root!
+		{
+			touchBox.origin = touchable->convertToWorldSpace({});
+		}
+		else
+		{
+			touchBox.origin = touchable->getParent()->convertToWorldSpace(touchBox.origin);
+		}
 
 		if (touchBox.containsPoint(worldLocation))
 		{
