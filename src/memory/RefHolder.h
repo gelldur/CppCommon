@@ -162,6 +162,26 @@ public:
 		return _ref;
 	}
 
+	friend bool operator<(const RefHolder& lhs, const RefHolder& rhs)
+	{
+		return lhs._ref < rhs._ref;
+	}
+
+	friend bool operator>(const RefHolder& lhs, const RefHolder& rhs)
+	{
+		return rhs < lhs;
+	}
+
+	friend bool operator<=(const RefHolder& lhs, const RefHolder& rhs)
+	{
+		return !(rhs < lhs);
+	}
+
+	friend bool operator>=(const RefHolder& lhs, const RefHolder& rhs)
+	{
+		return !(lhs < rhs);
+	}
+
 private:
 	T* _ref = nullptr;
 
@@ -173,5 +193,4 @@ private:
 		}
 	}
 };
-
 }
