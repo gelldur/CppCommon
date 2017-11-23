@@ -128,6 +128,21 @@ public:
 		return ref;
 	}
 
+	operator T*()
+	{
+		return _ref;
+	}
+
+	operator const T*() const
+	{
+		return _ref;
+	}
+
+	bool operator!() const
+	{
+		return _ref == 0;
+	}
+
 	operator bool() const
 	{
 		return _ref != nullptr;
@@ -155,6 +170,15 @@ public:
 			throw std::runtime_error("null pointer exception");
 		}
 		return _ref;
+	}
+
+	const T& operator*() const
+	{
+		if (_ref == nullptr)
+		{
+			throw std::runtime_error("null pointer exception");
+		}
+		return *_ref;
 	}
 
 	T* get() const
