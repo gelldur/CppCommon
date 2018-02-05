@@ -40,6 +40,7 @@ ComponentManager* ComponentManager::init(cocos2d::CCNode* node)
 
 ComponentManager* ComponentManager::husk(cocos2d::CCNode* node)
 {
+	assert(node != nullptr);
 	auto manager = dynamic_cast<ComponentManager*>(node->getUserObject());
 	assert(manager != nullptr && "This node doesn't have component manager or it was removed!");
 	return manager;

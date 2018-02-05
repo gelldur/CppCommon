@@ -55,7 +55,7 @@ private:
 	RefHolder<cocos2d::EventListenerTouchOneByOne> _listener;
 	EventCollector _collector;
 
-	std::vector<RefHolder<cocos2d::CCNode>> _touchables;
+	std::vector<cocos2d::CCNode*> _touchables;
 };
 
 } /* namespace Component */

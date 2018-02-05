@@ -39,7 +39,8 @@ bool Touchable::onTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 {
 	if (isTouched(touch->getLocation()))
 	{
-		getOwner()->getBus()->notify(TouchBegan{touch});
+		auto bus = getOwner()->getBus();//We need local copy of bus
+		bus->notify(TouchBegan{touch});
 		return true;
 	}
 
@@ -53,7 +54,9 @@ void Touchable::onTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 
 void Touchable::onTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 {
-	getOwner()->getBus()->notify(TouchEnded{touch});
+	//We need local copy of bus because during notification we can remove self
+	auto bus = getOwner()->getBus();
+	bus->notify(TouchEnded{touch});
 }
 
 void Touchable::onEnter()
@@ -113,7 +116,7 @@ bool Touchable::isTouched(const cocos2d::CCPoint& worldLocation)
 			continue;
 		}
 
-		auto touchBox = getBoundingBox(touchable.get());
+		auto touchBox = getBoundingBox(touchable);
 		touchBox.origin.x -= _widthMargin;
 		touchBox.size.width += _widthMargin;
 
